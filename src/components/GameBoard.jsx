@@ -6,11 +6,10 @@ const initialGameState = [
     [null, null, null]
 ];
 
-const GameBoard = () => {
+const GameBoard = ({character, onPlayHandler}) => {
 
     const [gameState, setGameState] = useState(initialGameState);
 
-    const [char, setChar] = useState('X');
 
 
     const handleBoxClick = (rowIndex, colIndex) => {
@@ -18,11 +17,11 @@ const GameBoard = () => {
         setGameState(
             (prevState) => {
                 const newState = [...prevState.map(inner => [...inner])];
-                newState[rowIndex][colIndex] = char;
+                newState[rowIndex][colIndex] = character;
                 return newState;
             }
         );
-        setChar((prevState) => (prevState === 'X') ? 'O' : 'X')
+        onPlayHandler();
     }
 
     return (

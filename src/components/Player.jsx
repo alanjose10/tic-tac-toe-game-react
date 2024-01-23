@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 
-const Player = ({ initialName, symbol }) => {
+const Player = ({ initialName, symbol, hasTurn }) => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [playerName, setPlayerName] = useState(initialName);
@@ -24,8 +24,8 @@ const Player = ({ initialName, symbol }) => {
     }
 
     return (
-        <li>
-            <span className="player">
+        <li className={hasTurn ? 'active' : undefined}>
+            <span className="player" >
                 {playerNameElement}
                 <span className="player-symbol">{symbol}</span>
             </span>
