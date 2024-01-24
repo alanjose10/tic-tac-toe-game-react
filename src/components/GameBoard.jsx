@@ -1,18 +1,10 @@
 import { useState } from "react";
 
-const initialGameState = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null]
-];
 
-const GameBoard = ({gamePlays, onPlay}) => {
 
-    const gameState = initialGameState;
+const GameBoard = ({gameState, onPlay}) => {
 
-    for (const play of gamePlays) {
-        gameState[play.square.row][play.square.col] = play.character
-    }
+    
 
     // const handleClick = (rowIndex, colIndex) => {
     //     if (gameState[rowIndex][colIndex] !== null){
