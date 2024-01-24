@@ -6,22 +6,12 @@ const initialGameState = [
     [null, null, null]
 ];
 
-const GameBoard = ({character, onPlayHandler}) => {
+const GameBoard = ({gamePlays, onPlay}) => {
 
-    const [gameState, setGameState] = useState(initialGameState);
+    const gameState = initialGameState;
 
-
-
-    const handleBoxClick = (rowIndex, colIndex) => {
-
-        setGameState(
-            (prevState) => {
-                const newState = [...prevState.map(inner => [...inner])];
-                newState[rowIndex][colIndex] = character;
-                return newState;
-            }
-        );
-        onPlayHandler();
+    for (const play of gamePlays) {
+        gameState[play.square.row][play.square.col] = play.character
     }
 
     return (
@@ -32,7 +22,7 @@ const GameBoard = ({character, onPlayHandler}) => {
                         <ol>
                             {row.map(
                                 (symbol, colIndex) => (
-                                    <li key={colIndex} className="grid-item"><button className="grid-button" onClick={() => handleBoxClick(rowIndex, colIndex)}>{symbol}</button></li>
+                                    <li key={colIndex} className="grid-item"><button className="grid-button" onClick={() => onPlay(rowIndex, colIndex)}>{symbol}</button></li>
                                 )
                             )}
                         </ol>
