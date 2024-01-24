@@ -3,38 +3,39 @@ import GameBoard from "./components/GameBoard";
 import { useState } from "react";
 import Logs from "./components/Logs";
 
+const getActivePlayer = (gamePlays) => {
+  if (gamePlays.length > 0 && gamePlays[0].character === 'X'){
+    return 'O';
+  }
+  return 'X';
+}
+
 function App() {
 
-  const [playingSymbol, setPlayingSymbol] = useState('X');
   const [gamePlays, setGamePlays] = useState([]);
 
+  const nextSymbol = getActivePlayer(gamePlays);
+
   const handlePlay = (rowIndex, colIndex) => {
-    setPlayingSymbol(prevState => prevState === 'X' ? 'O': 'X');
 
     setGamePlays(
       (prevState) => {
-
-        let currentSymbol = 'X';
-        if (prevState.length > 0 && prevState[0].character === 'X') {
-          currentSymbol = 'O';
-        }
-
+        const nextSymbol = getActivePlayer(prevState);
         const currentPlay = {
           square: { row: rowIndex, col: colIndex },
-          character: currentSymbol
+          character: nextSymbol
         };
         return [currentPlay, ...prevState];
       }
     )
-
-  } 
+  }
 
   return (
     <main>
       <div id="game-container">
         <ol id="players" className="highlight-player">
-          <Player initialName="Alan" symbol="X" hasTurn={playingSymbol === 'X'}/>
-          <Player initialName="Jose" symbol="O" hasTurn={playingSymbol === 'O'}/>
+          <Player initialName="Alan" symbol="X" hasTurn={nextSymbol === 'X'}/>
+          <Player initialName="Jose" symbol="O" hasTurn={nextSymbol === 'O'}/>
         </ol>
         <GameBoard gamePlays={gamePlays} onPlay={handlePlay}/>
       </div>

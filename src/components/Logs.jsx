@@ -3,8 +3,8 @@
 const Logs = ({ gamePlays }) => {
 
     return (
-        <ol>
-            {gamePlays.map((play, index) => <li key={index}>{`${play.square.row} ${play.square.col} ${play.character}`}</li>)}
+        <ol id="logs">
+            {gamePlays.map((play, index) => <li key={`${play.square.row}${play.square.col}`}>{play.character} selected row {play.square.row}, column {play.square.col}</li>)}
         </ol>
     );
 }

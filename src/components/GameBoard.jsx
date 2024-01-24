@@ -14,6 +14,13 @@ const GameBoard = ({gamePlays, onPlay}) => {
         gameState[play.square.row][play.square.col] = play.character
     }
 
+    const handleClick = (rowIndex, colIndex) => {
+        if (gameState[rowIndex][colIndex] !== null){
+            return
+        }
+        onPlay(rowIndex, colIndex);
+    }
+
     return (
         <ol id="game-board">
             {gameState.map(
@@ -22,7 +29,7 @@ const GameBoard = ({gamePlays, onPlay}) => {
                         <ol>
                             {row.map(
                                 (symbol, colIndex) => (
-                                    <li key={colIndex} className="grid-item"><button className="grid-button" onClick={() => onPlay(rowIndex, colIndex)}>{symbol}</button></li>
+                                    <li key={colIndex} className="grid-item"><button className="grid-button" onClick={() => handleClick(rowIndex, colIndex)}>{symbol}</button></li>
                                 )
                             )}
                         </ol>
