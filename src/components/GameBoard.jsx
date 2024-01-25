@@ -1,17 +1,5 @@
-import { useState } from "react";
-
-
 
 const GameBoard = ({gameState, onPlay}) => {
-
-    
-
-    // const handleClick = (rowIndex, colIndex) => {
-    //     if (gameState[rowIndex][colIndex] !== null){
-    //         return
-    //     }
-    //     onPlay(rowIndex, colIndex);
-    // }
 
     return (
         <ol id="game-board">

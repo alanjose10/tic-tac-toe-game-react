@@ -1,17 +1,19 @@
 
 import { useState } from "react";
 
-const Player = ({ initialName, symbol, hasTurn }) => {
+const Player = ({ initialName, symbol, hasTurn, onNameChange }) => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [playerName, setPlayerName] = useState(initialName);
 
     const handleButtonClick = () => {
+        if (isEditing) {
+            onNameChange(symbol, playerName);
+        }
         setIsEditing((prevState) => !prevState);
     }
 
     const handleInputChange = (e) => {
-        console.log(e.target.value);
         setPlayerName(e.target.value);
 
     }
